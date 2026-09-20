@@ -1,4 +1,5 @@
 def analyze_marks(marks, pass_mark=50):
+ 
  """
  Analyze a list of marks.
 
@@ -39,3 +40,5 @@ def analyze_marks(marks, pass_mark=50):
  "lowest": lowest,
  "pass_rate": passed / len(marks),
  }
+
+print(analyze_marks([-1, 50, 101], 50))

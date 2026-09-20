@@ -120,3 +120,5 @@ def run_tests():
 
 if __name__ == "__main__":
  run_tests()
+
+print(analyze_marks([-1, 50, 101], 50))

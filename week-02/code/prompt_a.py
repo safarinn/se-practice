@@ -8,6 +8,7 @@ students = {
  "Eva": 78
 }
 
+
 # Calculate statistics
 marks = list(students.values())
 average_mark = sum(marks) / len(marks)
