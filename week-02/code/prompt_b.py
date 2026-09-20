@@ -25,14 +25,13 @@ def analyze_marks(marks, pass_mark=50):
      raise ValueError("all marks must be numeric")
    if mark < 0 or mark > 100:
      raise ValueError("all marks must be in the range 0 to 100")
-
- total += mark
- if mark > highest:
-   highest = mark
- if mark < lowest:
-   lowest = mark
- if mark >= pass_mark:
-   passed += 1
+   total += mark
+   if mark > highest:
+     highest = mark
+   if mark < lowest:
+     lowest = mark
+   if mark >= pass_mark:
+     passed += 1
 
  return {
  "average": total / len(marks),

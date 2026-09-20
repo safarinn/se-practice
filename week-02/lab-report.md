@@ -95,7 +95,10 @@ explanation
 **What I appended to Prompt B:**
 
 ```
-
+Example: analyze_marks([40, 60, 80], 50) → average 60, highest 80, lowest 40,
+pass_rate 66.67. Include tests for: one mark, decimals, custom pass_mark, empty list,
+text value, and marks below 0 or above 100. State any remaining assumptions before
+the code.
 ```
 
 **Tests the AI wrote for itself** — how many, and which situations do they cover?
