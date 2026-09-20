@@ -14,10 +14,10 @@
 
 | | |
 | --- | --- |
-| AI assistant | |
-| Exact model name | |
-| Implementation language | |
-| Date of the runs | |
+| AI assistant |Claude |
+| Exact model name |Claude Opus 4.8 |
+| Implementation language | Python|
+| Date of the runs | 20.09.2026|
 
 **Non-Python students only** — paste your substituted Prompt B text here, so the substitution can
 be checked:
@@ -28,9 +28,9 @@ be checked:
 
 **Confirmations:**
 
-- Each prompt was sent in a **fresh chat**: yes / no
-- No follow-up questions were asked before Part 7: yes / no
-- Every output was saved **before** any editing: yes / no
+- Each prompt was sent in a **fresh chat**: yes 
+- No follow-up questions were asked before Part 7: yes 
+- Every output was saved **before** any editing: yes 
 
 ---
 
@@ -39,26 +39,29 @@ be checked:
 **Prompt sent** (should be exactly one sentence):
 
 ```
-
+Write Python code to analyze student marks.
 ```
 
 **Assumptions the AI made that I never gave it** — list them, one per line. A data format, a pass
 threshold, a rounding rule, an input method, an invented feature all count.
 
-1.
-2.
-3.
+1.Data format — used a hardcoded Python dictionary of name→mark instead of a file, list, or user input
+2.Marks are integers on a 0–100 scale
+3.Grade thresholds (A≥90, B≥80, C≥70, D≥60, F below) were invented; no grading scheme was given
 
 **Questions it should have asked and did not:**
 
-1.
-2.
+1.What input format and source should be used (file, list, dict etc), and does each student have one mark or several subjects?
+2.What is the required grading scheme or pass threshold and rounding rule, and should results be printed or returned?
 
 **Is the function named `analyze_marks` with the required signature?** yes / no — if no, what is it
 called:
 
+no — there is no analyze_marks function at all; the only function is get_grade(mark), and the analysis logic runs at module level
+
 **First impression before testing** (one sentence — you will compare this with section 6 later):
 
+ It looks like a tidy, runnable demo, but it's a self-contained toy script that answers a much narrower, more assumption-laden question than the one-sentence prompt actually asked
 ---
 
 ## 3. Prompt B — structured context
@@ -66,18 +69,24 @@ called:
 **Prompt sent** (paste it in full, including any substitutions):
 
 ```
+You are a Python developer. Implement analyze_marks(marks, pass_mark=50).
+Return average, highest, lowest, and pass_rate in a dictionary. Accept marks
+from 0 to 100; raise ValueError for an empty list, non-numeric values, or
+out-of-range values. Use no external libraries. Return code plus a short
+explanation
 
 ```
 
 **What B fixed compared to A:**
 
-1.
-2.
+1 Adds input validation for empty lists, non-numeric values, and out-of-range marks
+2 Returns the required statistics in a dictionary.
+
 
 **What B still leaves open:**
 
-1.
-2.
+1.Whether `pass_rate` should be returned as a fraction or a percentage
+2.Whether `pass_mark` should also be restricted to the 0 to 100 range
 
 ---
 
