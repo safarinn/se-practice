@@ -356,11 +356,11 @@ Name test cases and real returned values. "More detailed prompts work better" sc
 ```
 (150–200 words)
 
-Prompt C and D scored best at 9/10, and I would use that style at work because it is specific enough to be testable without being bloated. The single addition that bought the most correctness was adding the concrete example and explicit test list in Prompt C: it changed case 4, analyze_marks([], 50), from an under-specified situation into a clear ValueError requirement, and it also forced the model to handle cases 5 and 6 correctly. The pure noise was the extra student-grade example from Prompt A; it introduced unrelated grading logic and output formatting that was not part of the actual task. The main ambiguity was pass_rate: the spec did not say whether it should be a fraction or a percentage. I resolved it in Prompt C/D by treating it as a percentage, matching the example 66.67 for analyze_marks([40, 60, 80], 50). That choice also aligned the returned values for analyze_marks([49.5, 50], 50) as pass_rate: 50.0
+Prompt C and D produced the best code by score, at 9/10 each. That is also the prompt style I would use at work, because it is specific enough to make the implementation and tests unambiguous without adding unrelated features. The single addition that bought the most correctness was the explicit example plus required test cases: it turned case 4, analyze_marks([], 50), into a clear ValueError requirement, and it also forced correct handling of case 5 ([40, "60"]) and case 6 ([-1, 50, 101]). The pure noise in C/D was the extra pass_mark validation: checking that pass_mark is numeric and within 0..100 was reasonable, but it was not required by the six harness cases. The main ambiguity was pass_rate: the spec never said whether it should be a fraction or a percentage. I resolved that in Prompt D by stating that pass_rate is a percentage, which matched the example analyze_marks([40, 60, 80], 50) -> ... 66.67 and the harness expectations for cases 1 and 3
 
 ```
 
-**Word count:*172
+**Word count:*165
 
 ---
 

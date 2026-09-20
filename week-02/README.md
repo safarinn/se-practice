@@ -263,6 +263,26 @@ Fill in the scoring table in **section 7**. Five criteria, 0–2 points each:
 | **Assumptions stated** | none, and hidden ones exist | vague explanation | assumptions named explicitly before the code |
 | **Noise** | large unrequested scope (UI, files, CLI, extra features) | some extras | nothing beyond what was asked |
 
+B prompt:
+Correctness	1	It passed 3/6 cases. The invalid input cases passed, but the first three failed because pass_rate was returned as a fraction instead of a percentage.
+Requirement coverage	2 It used the correct function name and signature, returned all four keys, used only standard library features, and raised ValueError for the invalid mark cases.
+Verifiability	0	No tests were included.
+Assumptions stated	1	It explained that pass_rate was a fraction, but this was not stated as an explicit assumption before the code.
+Noise	2	It stayed focused on the requested function and did not add unnecessary UI, files, CLI code, or extra features.
+
+C prompt:
+Correctness	2	It passed all 6/6 harness cases.
+Requirement coverage	2	It met the required function name, signature, return dictionary, validation behavior, and used no external libraries.
+Verifiability	2	It included runnable tests and covered invalid inputs.
+Assumptions stated	2	It explicitly stated assumptions before the code.
+Noise	1	It added extra validation for pass_mark, which was reasonable but not explicitly required by the original specification.
+
+D prompt:
+Correctness	2	It passed all 6/6 harness cases.
+Requirement coverage	2	It fully covered the requested function behavior and validation.
+Verifiability	2	It included runnable tests, including invalid input cases.
+Assumptions stated	2	It stated assumptions clearly before the code.
+Noise	1	Like C, it included extra pass_mark validation beyond the required cases.
 ### Write the conclusion — 150–200 words, section 8
 
 Answer, in this order:
