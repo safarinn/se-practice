@@ -1,0 +1,34 @@
+@startuml
+' Use-case diagram — Smart Campus study room booking
+' Two actors, outside the boundary. Six use cases, inside it.
+' No screens, no databases, no internal components, no third actor.
+
+left to right direction
+
+actor Student
+actor Administrator
+
+rectangle "Smart Campus study room booking" {
+  usecase "View availability"      as UC01
+  usecase "Book room"              as UC02
+  usecase "Cancel booking"         as UC03
+  usecase "Block or unblock room"  as UC04
+  usecase "Review usage"           as UC05
+  usecase "Send confirmation"      as UC06
+}
+
+' Student actions
+Student --> UC01
+Student --> UC02
+Student --> UC03
+
+' Administrator actions
+Administrator --> UC04
+Administrator --> UC05
+
+' Confirmation is triggered by booking/cancellation,
+' so it does not need a direct actor association.
+UC02 ..> UC06 : <<include>>
+UC03 ..> UC06 : <<include>>
+
+@enduml
