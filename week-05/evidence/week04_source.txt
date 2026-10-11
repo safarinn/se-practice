@@ -1,0 +1,10 @@
+Verified on 2026-10-11 from the repository link supplied by the student.
+Report: https://github.com/safarinn/se-practice/blob/week-04/week-04/lab-report.md
+Declaration: https://github.com/safarinn/se-practice/blob/week-04/week-04/submission.yml
+Fetched the corresponding raw files. The source branch may change later.
+Report §1: Group = Monday 16-19:00.
+Report §4.3 A1: touching intervals are allowed, using half-open intervals.
+Declaration student.github = safarinn.
+Declaration assumptions.overlap_touching_bookings = allowed.
+These source facts close previously pending D4 and D14; personal Week 05
+understanding and unaided answers are still not certified by the assistant.

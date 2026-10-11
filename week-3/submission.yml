@@ -1,0 +1,42 @@
+# week-03/submission.yml — your declaration for this lab.
+
+schema: 1
+week: "03"
+
+student:
+  name: "Nurali Muratov"
+  student_id: "24B031887"
+  github: "safarinn"
+
+assistant:
+  tool: "ChatGPT"
+  model: "GPT-5.6 Luna"
+
+counts:
+  user_stories: 8
+  acceptance_criteria_sets: 3
+
+checker:
+ 
+  pass: 20
+  fail: 0
+  error: 3
+  commit: "a3f91c2"
+
+assumptions:
+  overlap_touching_bookings: allowed
+  exactly_two_hours: allowed
+
+traceability:
+  use_cases_not_covered: []
+  stories_not_traced: []
+
+review_findings:
+  - "AC-04 tests the exactly-two-hour boundary under R2."
+  - "UC-03 Cancel booking has US-03 but no dedicated acceptance criteria."
+  - "UC-05 Review usage has US-06 but no dedicated acceptance criteria."
+  - "UC-06 Send confirmation has US-07 and US-08 but no dedicated acceptance criteria."
+
+honesty:
+  can_explain_everything_submitted: yes
+  ai_usage_disclosed: yes

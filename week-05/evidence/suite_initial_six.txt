@@ -1,0 +1,17 @@
+test_121_minutes_is_rejected (test_booking.BookingTests.test_121_minutes_is_rejected)
+AC2: expected False from the specification. ... ok
+test_blocked_room_is_rejected (test_booking.BookingTests.test_blocked_room_is_rejected)
+AC3: expected False from the specification. ... ok
+test_exactly_120_minutes_is_allowed (test_booking.BookingTests.test_exactly_120_minutes_is_allowed)
+AC2: expected True from the specification. ... ok
+test_partial_overlap_after_is_rejected (test_booking.BookingTests.test_partial_overlap_after_is_rejected)
+AC4: expected False from the specification. ... ok
+test_starts_now_is_rejected (test_booking.BookingTests.test_starts_now_is_rejected)
+AC1: expected False from the specification. ... ok
+test_touching_end_is_allowed (test_booking.BookingTests.test_touching_end_is_allowed)
+AC4: expected True from the specification. ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK
