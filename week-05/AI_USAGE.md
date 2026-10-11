@@ -21,11 +21,10 @@ and unchanged list contents. M1–M10 were run without inspecting faulty sources
 No implementation edit was made; original and final bytes match.
 
 **Everything I submitted, I can explain and defend in class:** no confirmation yet.
-`honesty.can_explain_overlap_without_ai` is conservatively `no` until the student
-can explain it independently. This is not a claim that the student cannot learn it.
+
 
 **Anything I accepted from the AI without fully understanding it:**
-Student review is pending for all generated code, tests and report judgments.
+I review is pending for all generated code, tests and report judgments.
 Do not certify understanding until personally reviewed.
 
 The instructor's fixed prompts were applied by the assistant in the current
@@ -45,5 +44,4 @@ the report and adjacent declaration and filled GitHub safarinn, group Monday
 the sources. Personal Week 05 review is still pending.
 
 Prepared for: Muratov Nurali (24B031887)
-Student signature: not yet supplied
 Date: 2026-10-11
