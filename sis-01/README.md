@@ -107,9 +107,9 @@ forgot.
 **Prompt A — a contextual draft** → section 8, B1
 
 ```text
-Act as a software engineering tutor. Help me analyze topic [number and question] for a first-year-level university assignment.
+Act as a software engineering tutor. Help me analyze topic 1.3 — How can software engineering methods reduce costs over a system's life, and why does faster AI code generation not always mean lower total cost? for a first-year-level university assignment.
 
-My scenario is [users, problem, constraints and risk]. My initial ideas are [five points]. Draft a 400–500 word explanation using these details.
+My scenario is a fictional small grocery store where a cashier and a manager need a POS system because manual sales and inventory records cause errors. The constraints are a limited budget and a four-week launch deadline. The main risk is incorrect inventory balances leading to purchasing mistakes. My initial ideas are 1) Create a database and manage inventory through a POS system to reduce errors; 2) Introduce barcodes for products; 3) Initially implement only sales and inventory tracking to stay within the budget; 4) Test calculations and inventory updates to reduce the cost of fixing errors; 5) Set up backups and prepare a user guide for employees. Draft a 400–500 word explanation using these details.
 
 Separate facts from assumptions. Explain trade-offs and identify claims I should verify. Do not invent quotations, references or page numbers.
 ```
