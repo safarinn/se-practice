@@ -1,0 +1,10 @@
+No defect was found for inputs guaranteed by the contract and AC1-AC5.
+1. Outside-contract behavior: `if not (0 <= start < end <= 1440):`
+   does not check the type. A numeric float may pass; a string raises
+   TypeError. The contract says times are integers, but gives no required
+   behavior for other types. This is a declared limitation, not an AC failure.
+2. Redundancy: `0 <= start` is written explicitly, although `start > now`
+   with valid `now >= 0` already implies a positive start. AC1 explicitly
+   states both bounds. Keeping the comparison helps traceability and is correct.
+The overlap condition uses strict comparisons, all bookings are visited,
+and only True/False are returned. No rewrite is needed.

@@ -1,0 +1,15 @@
+1. Check 0 <= start < end <= 1440 (AC1). Return False if it fails.
+2. Check start > now (AC1). Return False if it fails.
+3. Reject end - start > 120 (AC2); exactly 120 is allowed.
+4. Reject blocked rooms (AC3).
+5. For every (booked_start, booked_end) in existing, reject when
+   start < booked_end and end > booked_start (AC4).
+6. Return True only after all checks pass (AC5). Read existing only;
+   do not sort, append, remove, save, or send a confirmation.
+Assumptions: now, blocked and existing meet the supplied contract.
+Times are integers on one date. Behavior for other types is unspecified;
+no extra type validation is part of this plan.
+Boundary cases: equal/reversed endpoints; end 1440 and 1441; start now
+and now + 1; durations 120 and 121; touching on both sides; contained,
+containing and identical intervals; empty and unsorted multiple bookings;
+input unchanged on accepted and rejected calls; Boolean result type.
