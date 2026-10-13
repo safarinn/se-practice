@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor Student
+actor Administrator
+rectangle "Smart Campus Room Booking System" {
+  usecase "View room availability" as ViewAvailability
+  usecase "Book room" as BookRoom
+  usecase "Cancel own booking" as CancelBooking
+  usecase "Block room" as BlockRoom
+  usecase "Unblock room" as UnblockRoom
+  usecase "Review room usage" as ReviewUsage
+  usecase "Booking confirmation" as Confirmation
+}
+Student -- ViewAvailability
+Student -- BookRoom
+Student -- CancelBooking
+Administrator -- BlockRoom
+Administrator -- UnblockRoom
+Administrator -- ReviewUsage
+' why: R4 makes confirmation an outcome of a successful booking, not a separate actor goal.
+BookRoom ..> Confirmation : <<include>>
+note bottom of Confirmation
+  Assumptions:
+  - Only the booking owner may cancel a booking.
+  - Touching bookings are allowed; intervals are half-open [start, end).
+  - Blocking a room prevents new bookings but preserves existing bookings.
+end note
+@enduml

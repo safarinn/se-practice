@@ -1,0 +1,11 @@
+@startuml
+start
+:Receive booking request;
+if (Can book?) then (yes)
+  :Save booking;
+  :Show confirmation;
+else (no)
+  :Reject booking;
+endif
+stop
+@enduml
