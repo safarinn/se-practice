@@ -1,0 +1,45 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+hide footbox
+title Course registration - R1-R5
+autonumber
+actor Student
+participant RegistrationService
+participant Catalog
+participant EnrollmentRepository
+Student -> RegistrationService : browseCatalog(semester)
+RegistrationService -> Catalog : getOfferings(semester)
+Catalog --> RegistrationService : course code, title, offeringId, semester, availablePlaces
+RegistrationService --> Student : showCatalog(code, title, offeringId, availablePlaces)
+note over Student, Catalog
+R1: availablePlaces = capacity - current enrollment count.
+Catalog is a snapshot; viewing reserves no place.
+end note
+Student -> Student : selectOffering(offeringId)
+Student -> RegistrationService : register(studentId, offeringId)
+group Atomic registration for the selected offering (R2-R5)
+note over RegistrationService, EnrollmentRepository
+All requests for this offering are serialized here.
+Final duplicate and capacity checks plus creation form
+one atomic operation; no competing request interleaves.
+end note
+RegistrationService -> EnrollmentRepository : existsEnrollment(studentId, offeringId)
+EnrollmentRepository --> RegistrationService : alreadyEnrolled
+RegistrationService -> EnrollmentRepository : getCurrentCountAndCapacity(offeringId)
+EnrollmentRepository --> RegistrationService : count, capacity
+alt already enrolled
+RegistrationService --> Student : reject: already enrolled (R3, R5)
+note right of EnrollmentRepository : No new record; count unchanged.
+else course full and not already enrolled
+RegistrationService --> Student : reject: course full (R2, R5)
+note right of EnrollmentRepository : No new record; count unchanged.
+else not enrolled and places left (count < capacity)
+RegistrationService -> EnrollmentRepository : createEnrollment(studentId, offeringId)
+EnrollmentRepository --> RegistrationService : enrollmentId; count = oldCount + 1
+RegistrationService -> RegistrationService : availablePlaces = capacity - count
+RegistrationService --> Student : confirm(enrollmentId, offeringId, availablePlaces) (R4)
+end
+end
+@enduml
