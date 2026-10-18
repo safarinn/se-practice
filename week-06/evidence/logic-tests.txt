@@ -1,0 +1,11 @@
+T1 logic PASS: Available; No conflicting booking. The room is available; no booking has been saved.
+T2 logic PASS: Unavailable; The interval overlaps the existing booking 10:00–11:00.
+T3 logic PASS: Unavailable; Room A101 is blocked.
+T4 logic PASS: Available; No conflicting booking. The room is available; no booking has been saved.
+T5 logic PASS: Unavailable; The interval exceeds the maximum of 120 minutes.
+T6 logic PASS: Unavailable; Start time must be after the supplied current time.
+T7 logic PASS: Unavailable; End time must be later than start time, within the same day.
+T8 logic PASS: Available; No conflicting booking. The room is available; no booking has been saved.
+End-of-day and malformed-time logic PASS
+T9: browser layout NOT VERIFIED
+These are function tests, not browser interactions or screenshot evidence.
