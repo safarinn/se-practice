@@ -21,25 +21,24 @@ Status: AI-assisted draft for student review; this is not evidence of a student-
 
 ### US-01 — Browse offerings
 
-**US-01:** As a student, I want to browse offerings for one semester, so that I can choose a specific section with visible availability.
+**US-01:** As a student, I want to browse course offerings for a selected semester, so that I can choose an offering with visible availability.
 
-- **AC-01** (R1): Given offerings exist for the selected semester, When I browse the catalog, Then each row shows course code, title, offering identifier and available places for that semester only.
-- **AC-02** (R1): Given offering CS101-A has capacity 2 and one enrollment, When I view its catalog row, Then it shows one available place and viewing the row reserves no place.
+- **AC-01** (R1): Given offerings exist for the selected semester, When I browse the catalog, Then each offering displays its course code, course title, offering identifier and available places, and only offerings for that semester are shown.
+- **AC-02** (R1): Given an offering has capacity 2 and one enrollment, When I view it in the catalog, Then it displays one available place, and viewing it neither creates an Enrollment nor reserves a place.
 
 ### US-02 — Register for an offering
 
-**US-02:** As a student, I want to register for my selected offering, so that I obtain one confirmed enrollment when a place is available.
+**US-02:** As a student, I want to register for a selected offering, so that I receive a confirmed enrollment when a place is available.
 
-- **AC-03** (R2, R3, R4): Given I have no enrollment in an offering with capacity 2 and count 0, When I request registration, Then the system atomically rechecks duplicates and current capacity, creates exactly one Enrollment linking me to that offering, changes count to 1 and available places to 1, and returns confirmation after creation.
-- **AC-04** (R2, R3, R4): Given two different students without enrollments request the last place in an offering with capacity 2 and count 1, When their registration requests compete, Then atomic checks and creation admit exactly one, its confirmation reports zero remaining places, and the other receives course full without another Enrollment.
+- **AC-03** (R2, R3, R4): Given I have no enrollment in an offering with capacity 2 and enrollment count 0, When I request registration, Then the system atomically checks for an existing enrollment and rechecks current capacity, creates exactly one Enrollment linking me to that offering, changes the count to 1, updates available places to 1 and returns confirmation after creation.
+- **AC-04** (R2, R3, R4, R5): Given an offering has capacity 2 and enrollment count 1, and two different students without enrollments request its last place, When their requests are processed, Then the final checks and creation execute atomically, exactly one request creates an Enrollment and receives confirmation with zero available places, and the other receives “course full” without creating another Enrollment.
 
 ### US-03 — Receive a clear rejection
 
-**US-03:** As a student, I want a clear reason when registration is rejected, so that I know whether the offering is full or I am already enrolled.
+**US-03:** As a student, I want a clear explanation when registration is rejected, so that I understand why no new enrollment was created.
 
-- **AC-05** (R2, R5): Given the catalog showed a place but current count is now 2 of capacity 2 and I am not enrolled, When I request registration, Then the final current-capacity check returns course full, creates no Enrollment and leaves count at 2.
-- **AC-06** (R3, R5): Given I already have an Enrollment in an offering with capacity 2 and count 1, When I request the same offering again, Then the final duplicate check returns already enrolled, creates no Enrollment and leaves count at 1.
-
+- **AC-05** (R2, R5): Given the catalog previously showed an available place but the offering now has enrollment count 2 and capacity 2, and I am not enrolled, When I request registration, Then the system rechecks current capacity, returns “course full”, creates no Enrollment and leaves the count at 2.
+- **AC-06** (R3, R5): Given I already have an Enrollment in an offering with capacity 2 and enrollment count 1, When I request registration for the same offering again, Then the system detects the existing enrollment, returns “already enrolled”, creates no Enrollment and leaves the count at 1.
 
 ## 3. Sequence diagram
 
@@ -77,7 +76,7 @@ Status: AI-assisted draft for student review; this is not evidence of a student-
 | R2 + AC-03, AC-04, AC-05 | getCurrentCountAndCapacity follows register inside the Atomic registration group; success guard requires count < capacity; capacity note limits all offerings. | T1, T2, T3; interleaving check: second contender reads count 2 after first contender commits. |
 | R3 + AC-03, AC-04, AC-06 | existsEnrollment precedes creation; already enrolled guard rejects; uniqueness note limits pairs. | T4 |
 | R4 + AC-03, AC-04 | createEnrollment occurs once on success; derived availability precedes confirm. | T1, T2 |
-| R5 + AC-05, AC-06 | Both rejection branches return explicit reasons and contain no writes. | T3, T4 |
+| R5 + AC-04, AC-05, AC-06 | Both rejection branches return explicit reasons and contain no writes. | T3, T4 |
 
 ## 6. Walkthroughs
 
@@ -103,7 +102,7 @@ The following are assistant review recommendations applied to this draft, awaiti
 | Derived availablePlaces | Accepted: keep the derived attribute and recalculate after creation. | A derived value avoids two independent counts that could contradict each other after registration. | R1, R4 |
 | Personal reflection authorship | Unresolved: AI-assisted draft requires personal review. | Meeting the word limit does not establish independent authorship or personal understanding. | R1-R5 |
 | A1: pre-AI baseline | Unresolved: no authentic initial assumptions were supplied. | The student's earlier scope and assumptions cannot be reconstructed as historical evidence. | R1-R5 |
-| E1, E2, E3, E4, E5, E6, E7, E8, E9, E10: AI exchange evidence | Unresolved: four required exchanges were not conducted. | This completion conversation does not establish four exact prompts or an independent critique chat. | R1-R5 |
+| E1, E7, E8, E9, E10: remaining AI exchanges | Unresolved: B1 is recorded; B2-B4 remain outstanding. | One authentic requirements exchange does not replace the three remaining modeling and review exchanges. | R1-R5 |
 
 ## 8. Modeling explanation
 
@@ -135,9 +134,58 @@ No initial assumptions authored by the student before AI were supplied. The fina
 
 ## 11. Appendix B — AI exchanges
 
-The user requested completion of the assignment in one Codex conversation on 2026-10-18. The exact initial request was: «заверши мне этот сис». The user later supplied identity and repository details. No four separate Prompt A-D exchanges were provided or executed, and no independent critique chat was run. This section deliberately does not invent a transcript. The generated report and PlantUML files are the assistant's actual deliverables from that conversation. Tool: Codex desktop. Model version displayed to the assistant: not displayed.
+The initial technical draft preceded the formal requirements exchange. The following B1 is the actual later user prompt and complete assistant response from this conversation. Its date is 2026-10-18. No earlier scope commit is claimed. B2-B4 remain outstanding; prepared prompts outside the submission folder are not executed exchanges.
 
-Required process evidence remains outstanding. The four exact prompt templates are in README.md section 4. Any subsequent exchanges must be logged verbatim and dated when they actually occur; they must not be described as preceding this draft.
+### B1 — Requirements (Prompt A)
+
+- **Tool:** Codex desktop
+- **Model:** not displayed
+- **Date:** 2026-10-18
+- **Purpose:** draft 3 user stories and 6 acceptance criteria
+
+**Prompt:**
+
+~~~~text
+Act as a requirements analyst. Use only this course registration scenario and rules R1–R5: R1. Catalog Show the course code, title, offering and available places for one semester.
+R2. Capacity Recheck current availability when registering. Enrollment must never exceed the offering's capacity.
+R3. Duplicates A student may have at most one enrollment in the same offering. Reject a repeat request.
+R4. Success Create exactly one Enrollment linking the student and offering, update availability and return a confirmation.
+R5. Rejection Explain "course full" or "already enrolled". Create no enrollment and leave the enrollment count unchanged. My initial assumptions are Payments, prerequisites, timetable clashes, waiting lists and cancellation are out of scope.
+Draft 3 user stories and 2 Given / When / Then acceptance criteria for each. Use IDs US-01 to US-03 and AC-01 to AC-06. Map each criterion to rule IDs.
+Cover normal and rejection behavior. List uncertainty separately. Do not add excluded features or invent university policies.
+```
+~~~~
+
+**Response:**
+
+~~~~text
+### US-01 — Browse offerings
+
+**US-01:** As a student, I want to browse course offerings for a selected semester, so that I can choose an offering with visible availability.
+
+- **AC-01 (R1):** Given offerings exist for the selected semester, When I browse the catalog, Then each offering displays its course code, course title, offering identifier and available places, and only offerings for that semester are shown.
+- **AC-02 (R1):** Given an offering has capacity 2 and one enrollment, When I view it in the catalog, Then it displays one available place, and viewing it neither creates an Enrollment nor reserves a place.
+
+### US-02 — Register for an offering
+
+**US-02:** As a student, I want to register for a selected offering, so that I receive a confirmed enrollment when a place is available.
+
+- **AC-03 (R2, R3, R4):** Given I have no enrollment in an offering with capacity 2 and enrollment count 0, When I request registration, Then the system atomically checks for an existing enrollment and rechecks current capacity, creates exactly one Enrollment linking me to that offering, changes the count to 1, updates available places to 1 and returns confirmation after creation.
+- **AC-04 (R2, R3, R4, R5):** Given an offering has capacity 2 and enrollment count 1, and two different students without enrollments request its last place, When their requests are processed, Then the final checks and creation execute atomically, exactly one request creates an Enrollment and receives confirmation with zero available places, and the other receives “course full” without creating another Enrollment.
+
+### US-03 — Receive a clear rejection
+
+**US-03:** As a student, I want a clear explanation when registration is rejected, so that I understand why no new enrollment was created.
+
+- **AC-05 (R2, R5):** Given the catalog previously showed an available place but the offering now has enrollment count 2 and capacity 2, and I am not enrolled, When I request registration, Then the system rechecks current capacity, returns “course full”, creates no Enrollment and leaves the count at 2.
+- **AC-06 (R3, R5):** Given I already have an Enrollment in an offering with capacity 2 and enrollment count 1, When I request registration for the same offering again, Then the system detects the existing enrollment, returns “already enrolled”, creates no Enrollment and leaves the count at 1.
+
+### Uncertainty
+
+- **Rejection priority:** The rules do not specify which reason takes priority when the student is already enrolled and the offering is also full. This requires an explicit modeling decision.
+- **Offering identification:** The catalog must distinguish offerings, but the identifier’s format is unspecified.
+- **Atomicity implementation:** The model must prevent competing requests from exceeding capacity; the particular locking or transaction mechanism is unspecified and outside this modeling task.
+~~~~
 
 ## 12. Appendix C — Original diagrams
 

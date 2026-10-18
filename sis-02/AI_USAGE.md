@@ -19,3 +19,5 @@ Signed: not signed by the student
 Date: 2026-10-18
 
 Student-stated model preference on 2026-10-18: GPT-6 Astra. This preference is not confirmation of the model used in the earlier work.
+
+The later formal Prompt A and its complete response are preserved in report.md B1. No Prompt B, C or D exchange is claimed.
