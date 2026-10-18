@@ -9,14 +9,14 @@ assistant:
   tool: "Codex desktop"
   model: "not displayed"
 checker:
-  pass: 33
+  pass: 38
   fail: 2
-  error: 9
-  commit: "b0c4291"
+  error: 4
+  commit: "f924270"
 counts:
   stories: 3
   criteria: 6
-  exchanges: 0
+  exchanges: 1
   review_decisions: 8
   source_checks: 2
   explanation_words: 256
@@ -26,4 +26,4 @@ walkthroughs:
   T2: pass
   T3: pass
   T4: pass
-known_fails: [A1, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10]
+known_fails: [A1, E1, E7, E8, E9, E10]
