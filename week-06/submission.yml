@@ -1,0 +1,36 @@
+schema: 1
+week: "06"
+student:
+  name: "Nurali Muratov"
+  student_id: "24B031887"
+  github: "safarinn"
+assistant:
+  tool: "Lovable (student-reported; export identifies Atoms) and Codex"
+  model: "not displayed"
+  fallback_reason: "Bolt returned an empty-message response and student reported export errors; Codex completed a recovery implementation under deadline."
+bolt:
+  project_url: "https://atoms.dev/share/3f8be12cffe7450f8462dbf15dc82985"
+counts:
+  issues: 2
+  cleanup_prompts: 1
+  change_log_rows: 3
+  v1_matches: 0
+  final_matches: 0
+checker:
+  pass: 15
+  fail: 10
+  error: 2
+  commit: d278cb9
+  known_fails: [E3, E4, T1, T2, T3, T4, T5, T6, T7, T8, T9, L6]
+assumptions:
+  end_of_day: typed-24:00
+review_findings:
+  - "AC4: original/availability.ts already uses strict overlap comparisons, allowing touching endpoints."
+  - "v1: no provided room contains the required sole booking 10:00-11:00, and the UI entry source is missing."
+  - "T8: final function tests confirm repeated checks do not change the frozen booking data; browser evidence is absent."
+  - "T9: responsive CSS exists in index.html, but mobile browser behavior remains unverified."
+honesty:
+  v1_export_unedited: no
+  screenshots_unedited: yes
+  can_explain_component_without_ai: no
+  ai_usage_disclosed: yes
