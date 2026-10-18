@@ -13,11 +13,11 @@ grader find your answers by them. Add rows to any table; never remove its header
 
 | | |
 | --- | --- |
-| Tool | Bolt.new |
-| Exact model (as Bolt shows it, or `not displayed`) |  GLM 5.3 Flash|
-| Bolt project link (or `not shared`, and why) |not shared |
+| Tool | Lovable |
+| Exact model (as Bolt shows it, or `not displayed`) |  Alex |
+| Bolt project link (or `not shared`, and why) |https://atoms.dev/share/3f8be12cffe7450f8462dbf15dc82985 |
 | Browser and version | safari |
-| If you could not use Bolt.new: the tool you used instead, and why | use|
+| If you could not use Bolt.new: the tool you used instead, and why | I could not use Bolt because there were some bugs and errors it did not show files|
 
 ---
 
