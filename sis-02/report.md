@@ -101,7 +101,7 @@ The following are assistant review recommendations applied to this draft, awaiti
 | Explicit duplicate branch before full branch | Accepted: preserve duplicate priority and explain it. | An existing enrollment gives the requester a more specific explanation when both rejection conditions hold. | R3, R5 |
 | Add database locking classes | Rejected: keep the domain model limited to four classes. | The atomicity requirement can be stated without introducing implementation mechanisms outside the assignment's abstraction. | R2 |
 | Derived availablePlaces | Accepted: keep the derived attribute and recalculate after creation. | A derived value avoids two independent counts that could contradict each other after registration. | R1, R4 |
-| W2: personal reflection | Unresolved: awaiting the student's own account. | A first-person account of personal learning cannot be verified from an empty template. | R1-R5 |
+| Personal reflection authorship | Unresolved: AI-assisted draft requires personal review. | Meeting the word limit does not establish independent authorship or personal understanding. | R1-R5 |
 | A1: pre-AI baseline | Unresolved: no authentic initial assumptions were supplied. | The student's earlier scope and assumptions cannot be reconstructed as historical evidence. | R1-R5 |
 | E1, E2, E3, E4, E5, E6, E7, E8, E9, E10: AI exchange evidence | Unresolved: four required exchanges were not conducted. | This completion conversation does not establish four exact prompts or an independent critique chat. | R1-R5 |
 
@@ -117,7 +117,13 @@ An activity diagram could additionally emphasize the decision flow from selectio
 
 ## 9. Reflection
 
-Personal reflection is awaiting the student's own account. This assistant has not supplied a first-person reflection or claimed to know the student's independent decisions. Describe the specific help received, one decision personally evaluated, and a remaining limitation in 150-200 words. Any later translation or editing assistance must be disclosed.
+AI-assisted draft for student review; this is not an independently written reflection.
+
+I selected GPT-6 Astra as my preferred assistant for this assignment. The prepared materials show how AI can support requirements drafting, PlantUML modeling, and consistency checks. In this draft, AI supplied the diagrams, traced the four validation cases, and explained why capacity and uniqueness need separate constraints. I still need to review those results before claiming that I can defend them independently.
+
+One design decision for my review is checking duplicate registration before returning a full-course rejection. This gives an already enrolled student a specific explanation even when the offering is also full. The draft recommends that ordering, but I have not yet provided an independent justification of my own. I should compare both outcomes and decide whether I agree with the explanation.
+
+A remaining limitation is that an atomic group expresses required behavior without implementing or testing concurrency. The model therefore does not prove that a real database would prevent competing requests from taking the last place. My next step is to explain that distinction and repeat the walkthroughs myself.
 
 ## 10. Appendix A — Before AI
 
