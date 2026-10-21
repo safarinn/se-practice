@@ -1,0 +1,16 @@
+@startuml
+class Student {
+  studentId
+}
+class Room {
+  roomId
+  blocked
+}
+class Booking {
+  startTime
+  duration
+}
+class BookingService
+Student "1" -- "1..*" Booking
+Room "1" *-- "1..*" Booking
+@enduml

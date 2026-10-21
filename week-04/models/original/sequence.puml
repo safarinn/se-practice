@@ -1,0 +1,13 @@
+@startuml
+actor Student
+participant BookingService
+participant BookingRepository
+Student -> BookingService : book(room, start, end)
+BookingService -> BookingRepository : save booking
+alt booking successful
+  BookingRepository --> BookingService : saved
+  BookingService --> Student : confirmation
+else unavailable
+  BookingService --> Student : rejected
+end
+@enduml

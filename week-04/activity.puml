@@ -1,0 +1,24 @@
+@startuml
+start
+:Receive room and requested time range;
+if (Time range valid? R1) then ([yes])
+  :Check whether room is blocked;
+  if (Room blocked? R3) then ([no])
+    :Check active bookings for overlap (R2);
+    if (Overlap found? R2) then ([no])
+      :Create and persist booking;
+      :Return booking confirmation (R4);
+      stop
+    else ([yes])
+      :Reject request because time overlaps an active booking;
+      stop
+    endif
+  else ([yes])
+    :Reject request because room is blocked;
+    stop
+  endif
+else ([no])
+  :Reject request because start or duration violates R1;
+  stop
+endif
+@enduml

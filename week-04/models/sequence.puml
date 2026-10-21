@@ -1,0 +1,21 @@
+@startuml
+actor Student
+participant BookingService
+participant BookingRepository
+Student -> BookingService : requestBooking(roomId, startTime, endTime)
+BookingService -> BookingService : validate time range (R1: future start, 0 < duration <= 2h)
+BookingService -> BookingRepository : check room blocked status (R3)
+BookingRepository --> BookingService : room status
+BookingService -> BookingRepository : check active booking overlap (R2)
+BookingRepository --> BookingService : availability result
+alt created - all validations pass
+  BookingService -> BookingRepository : create and save booking
+  BookingRepository --> BookingService : booking persisted
+  BookingService --> Student : return confirmation (R4)
+else unavailable - invalid time, blocked room, or overlap
+  BookingService --> Student : reject request with reason
+end
+note over BookingService, BookingRepository
+  Assumption: touching intervals are allowed; blocked rooms retain existing bookings.
+end note
+@enduml

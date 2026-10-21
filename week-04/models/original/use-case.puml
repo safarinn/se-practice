@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+actor Student
+actor Administrator
+rectangle "Smart Campus" {
+  usecase "View availability" as VA
+  usecase "Book room" as BR
+  usecase "Cancel booking" as CB
+  usecase "Block / unblock room" as BL
+  usecase "Review usage" as RU
+  usecase "Send confirmation" as SC
+}
+Student -- VA
+Student -- BR
+Student -- CB
+Student -- SC
+Administrator -- BL
+Administrator -- RU
+BR ..> SC : <<include>>
+@enduml

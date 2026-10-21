@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Student {
+  studentId: String
+  +viewAvailability(start: DateTime, end: DateTime)
+  +bookRoom(room: Room, start: DateTime, end: DateTime)
+  +cancelBooking(booking: Booking)
+}
+class Room {
+  roomId: String
+  isBlocked: Boolean
+  +block()
+  +unblock()
+}
+class Booking {
+  bookingId: String
+  startTime: DateTime
+  endTime: DateTime
+  status: BookingStatus
+  +cancel()
+  +overlaps(start: DateTime, end: DateTime): Boolean
+}
+enum BookingStatus {
+  ACTIVE
+  CANCELLED
+}
+Student "1" -- "0..*" Booking : owns
+Room "1" -- "0..*" Booking : scheduled for
+note right of Booking
+  R2: Active bookings for the same room cannot overlap.
+  Enforce this as a domain constraint; multiplicity cannot express it.
+  Assumption: touching intervals are allowed ([start, end)).
+end note
+note right of Room
+  R3: A blocked room rejects new bookings.
+  Assumption: blocking preserves existing bookings.
+end note
+@enduml
