@@ -1,0 +1,75 @@
+[
+  {
+    "id": "T1",
+    "expected": "Available",
+    "result": "\u2713\nAvailable\n\nThis interval is free. Checking availability does not reserve the room.",
+    "unchanged": true
+  },
+  {
+    "id": "T2",
+    "expected": "Unavailable",
+    "result": "!\nUnavailable\n\nThis interval overlaps an existing booking. Choose a different time.",
+    "unchanged": true
+  },
+  {
+    "id": "T3",
+    "expected": "Unavailable",
+    "result": "!\nUnavailable\n\nRoom A101 is blocked and unavailable at all times.",
+    "unchanged": true
+  },
+  {
+    "id": "T4",
+    "expected": "Available",
+    "result": "\u2713\nAvailable\n\nThis interval is free. Checking availability does not reserve the room.",
+    "unchanged": true
+  },
+  {
+    "id": "T5",
+    "expected": "Unavailable",
+    "result": "!\nUnavailable\n\nChoose an interval of 120 minutes or less.",
+    "unchanged": true
+  },
+  {
+    "id": "T6",
+    "expected": "Unavailable",
+    "result": "!\nUnavailable\n\nStart time must be after the supplied current time.",
+    "unchanged": true
+  },
+  {
+    "id": "T7",
+    "expected": "Unavailable",
+    "result": "!\nUnavailable\n\nEnd time must be later than start time, within the same day.",
+    "unchanged": true
+  },
+  {
+    "id": "T8",
+    "expected": "Available",
+    "result": "\u2713\nAvailable\n\nThis interval is free. Checking availability does not reserve the room.",
+    "unchanged": true
+  },
+  {
+    "id": "T9",
+    "expected": "Unavailable",
+    "result": "!\nUnavailable\n\nEnter valid times in HH:MM format. Only 24:00 is accepted at the day boundary.",
+    "unchanged": true
+  },
+  {
+    "id": "T10",
+    "expected": "Unavailable",
+    "result": "!\nUnavailable\n\nThis interval overlaps an existing booking. Choose a different time.",
+    "unchanged": true
+  },
+  {
+    "id": "T11",
+    "expected": "Available",
+    "result": "\u2713\nAvailable\n\nThis interval is free. Checking availability does not reserve the room.",
+    "unchanged": true
+  },
+  {
+    "id": "T12",
+    "expected": "Available",
+    "result": "Available",
+    "viewport": "375px iframe, measured bounding width 375",
+    "screenshot": "final-narrow.jpg"
+  }
+]
