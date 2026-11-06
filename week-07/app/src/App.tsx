@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 
 import { canBook } from './booking';
 
@@ -28,7 +28,12 @@ export default function App() {
 
   const room = ROOMS.find(r => r.id === roomId)!;
 
-  function check() {
+  function check(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const fields = new FormData(event.currentTarget);
+    const start = String(fields.get('start') ?? '');
+    const end = String(fields.get('end') ?? '');
+    const now = String(fields.get('now') ?? '');
     setResult(null);
     if (!start || !now || (!end && !endOfDay)) {
       setError('Fill in the current time, the start and the end.');
@@ -49,19 +54,19 @@ export default function App() {
   return (
     <main className="page">
       <h1>Smart Campus Room Availability</h1>
-      <div className="row">
+      <form onSubmit={check}><div className="row">
         <label>Room
           <select value={roomId} onChange={e => setRoomId(e.target.value)}>
             {ROOMS.map(r => <option key={r.id} value={r.id}>{r.name}</option>)}
           </select>
         </label>
-        <label>Current time<input type="time" value={now} onChange={e => setNow(e.target.value)} /></label>
-        <label>Start<input type="time" value={start} onChange={e => setStart(e.target.value)} /></label>
-        <label>End<input type="time" value={end} disabled={endOfDay} onChange={e => setEnd(e.target.value)} /></label>
+        <label>Current time<input type="time" name="now" value={now} onChange={e => setNow(e.target.value)} /></label>
+        <label>Start<input type="time" name="start" value={start} onChange={e => setStart(e.target.value)} /></label>
+        <label>End<input type="time" name="end" value={end} disabled={endOfDay} onChange={e => setEnd(e.target.value)} /></label>
         <label className="inline"><input type="checkbox" checked={endOfDay} onChange={e => setEndOfDay(e.target.checked)} /> Ends at 24:00</label>
         <label className="inline"><input type="checkbox" checked={blocked} onChange={e => setBlocked(e.target.checked)} /> Room blocked</label>
       </div>
-      <button onClick={check}>Check availability</button>
+      <button type="submit">Check availability</button></form>
       {error && <p className="error">{error}</p>}
       {result !== null && (
         <p className={`result ${result ? 'available' : 'unavailable'}`}>{result ? 'Available' : 'Unavailable'}</p>

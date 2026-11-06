@@ -1,0 +1,14 @@
+
+> smart-campus-availability@0.0.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/nuralimuratov/Documents/Codex/2026-11-01/wor/work/w7/week-07/app
+
+ ✓ src/booking.test.ts (17 tests) 3ms
+
+ Test Files  1 passed (1)
+      Tests  17 passed (17)
+   Start at  20:11:19
+   Duration  218ms (transform 20ms, setup 0ms, collect 17ms, tests 3ms, environment 0ms, prepare 36ms)
+
