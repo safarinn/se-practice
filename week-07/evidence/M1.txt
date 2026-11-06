@@ -1,0 +1,54 @@
+
+> smart-campus-availability@0.0.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/nuralimuratov/Documents/Codex/2026-11-01/wor/work/w7/week-07/app
+
+ ❯ src/booking.test.ts (17 tests | 1 failed) 6ms
+   ✓ T01 AC4 touching after 1ms
+   ✓ T02 AC1 starts now 0ms
+   ✓ T03 AC1 zero duration 0ms
+   ✓ T04 AC1 reversed 0ms
+   ✓ T05 AC1 past day end 0ms
+   × T06 AC2 120 minutes 3ms
+     → expected false to be true // Object.is equality
+   ✓ T07 AC2 121 minutes 0ms
+   ✓ T08 AC4 touching before 0ms
+   ✓ T09 AC4 partial overlap 0ms
+   ✓ T10 AC4 contains booking 0ms
+   ✓ T11 AC4 inside booking 0ms
+   ✓ T12 AC4 identical interval 0ms
+   ✓ T13 AC3 blocked room 0ms
+   ✓ T14 AC4 empty schedule 0ms
+   ✓ AC5 preserves existing bookings after an available check 0ms
+   ✓ X1 AC1 allows an end at midnight 0ms
+   ✓ X2 AC4 checks the second booking 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking.test.ts > T06 AC2 120 minutes
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/booking.test.ts:29:38
+     27| 
+     28| test('T06 AC2 120 minutes', () => {
+     29|   expect(canBook(request(720, 840))).toBe(true);
+       |                                      ^
+     30| });
+     31| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  20:11:16
+   Duration  236ms (transform 21ms, setup 0ms, collect 17ms, tests 6ms, environment 0ms, prepare 37ms)
+
