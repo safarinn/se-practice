@@ -49,23 +49,23 @@ for every test. **The Expected column comes from AC1–AC4, never from the code.
 
 | ID | Candidate / changed input | Expected | AC | Reason (in your words) |
 | --- | --- | --- | --- | --- |
-| T01 | 660–720 (touching after) | true | AC4 | |
-| T02 | 540–570 (starts now) | false | AC1 | |
-| T03 | 720–720 (zero duration) | false | AC1 | |
-| T04 | 750–720 (reversed) | false | AC1 | |
-| T05 | 1380–1441 (past day end) | false | AC1 | |
-| T06 | 720–840 (120 minutes) | true | AC2 | |
-| T07 | 720–841 (121 minutes) | false | AC2 | |
-| T08 | 570–600 (touching before) | true | AC4 | |
-| T09 | 630–690 (partial overlap) | false | AC4 | |
-| T10 | 570–690 (contains booking) | false | AC4 | |
-| T11 | 615–645 (inside booking) | false | AC4 | |
-| T12 | 600–660 (identical interval) | false | AC4 | |
-| T13 | 660–720, blocked = true | false | AC3 | |
-| T14 | 630–690, bookings = [] | true | AC4 | |
-| AC5 | an Available request — the bookings after the call equal the bookings before | true, data unchanged | AC5 | |
-| X1 | | | | |
-| X2 | | | | |
+| T01 | 660–720 (touching after) | true | AC4 | The occupied interval ends exactly at the requested start, so they share no minute. |
+| T02 | 540–570 (starts now) | false | AC1 | Equality with the current time violates the strict future-start rule. |
+| T03 | 720–720 (zero duration) | false | AC1 | The endpoints coincide, leaving zero minutes for the request. |
+| T04 | 750–720 (reversed) | false | AC1 | The proposed end precedes the start by thirty minutes. |
+| T05 | 1380–1441 (past day end) | false | AC1 | 1441 is one minute beyond the last allowed end. |
+| T06 | 720–840 (120 minutes) | true | AC2 | The duration equals the inclusive two-hour limit and no booking intersects it. |
+| T07 | 720–841 (121 minutes) | false | AC2 | One extra minute puts the request over the two-hour limit. |
+| T08 | 570–600 (touching before) | true | AC4 | The candidate ends when the existing booking begins, leaving no shared minute. |
+| T09 | 630–690 (partial overlap) | false | AC4 | The intervals both contain minutes 630 through 659. |
+| T10 | 570–690 (contains booking) | false | AC4 | The requested interval includes the whole occupied hour. |
+| T11 | 615–645 (inside booking) | false | AC4 | Every minute of the requested interval is already occupied. |
+| T12 | 600–660 (identical interval) | false | AC4 | Identical positive-length intervals occupy the same minutes. |
+| T13 | 660–720, blocked = true | false | AC3 | The blocked flag vetoes an otherwise free interval. |
+| T14 | 630–690, bookings = [] | true | AC4 | Removing the only conflicting interval makes this future hour available. |
+| AC5 | an Available request — the bookings after the call equal the bookings before | true, data unchanged | AC5 | Checking an available slot must preserve each existing interval and its order. |
+| X1 | 1380–1440 | true | AC1 | Midnight is a valid end, unlike 1441 in T05. |
+| X2 | 720–780, bookings 600–660 and 700–760 | false | AC4 | Only the second reservation overlaps; inspecting just the first gives a wrong acceptance. |
 
 X1 and X2 are **your own two cases**: a boundary or a state that T01–T14 do not reach. Fill all
 five columns.
