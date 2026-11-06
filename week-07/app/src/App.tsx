@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
-// Starter for students with no Week 06 project. The availability decision lives INSIDE this
-// component on purpose: Task 1 of Practice #07 is to extract it into src/booking.ts as
-// canBook({ start, end, now, blocked, bookings }) without changing what the page does.
+import { canBook } from './booking';
 
 type Interval = { start: number; end: number };
 type Room = { id: string; name: string; blocked: boolean; bookings: Interval[] };
@@ -45,20 +43,7 @@ export default function App() {
       setError('');
     }
 
-    let ok = true;
-    if (!(0 <= s && s < e && e <= 1440)) ok = false;
-    else if (!(s > n)) ok = false;
-    else if (e - s > 120) ok = false;
-    else if (blocked) ok = false;
-    else {
-      for (const b of room.bookings) {
-        if (s < b.end && e > b.start) {
-          ok = false;
-          break;
-        }
-      }
-    }
-    setResult(ok);
+    setResult(canBook({ start: s, end: e, now: n, blocked, bookings: room.bookings }));
   }
 
   return (
