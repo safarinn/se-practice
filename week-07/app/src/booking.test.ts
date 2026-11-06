@@ -63,6 +63,7 @@ test('T14 AC4 empty schedule', () => {
 
 test('AC5 preserves existing bookings after an available check', () => {
   const candidate = request(660, 720);
+  candidate.bookings.unshift({ start: 900, end: 960 });
   const before = structuredClone(candidate.bookings);
   expect(canBook(candidate)).toBe(true);
   expect(candidate.bookings).toEqual(before);
