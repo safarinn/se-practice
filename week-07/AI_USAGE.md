@@ -1,30 +1,13 @@
-# AI Usage Disclosure — Week 07
+# Week 07 AI usage
 
-Required by the course academic policy (Generative AI use level **D — AI-integrated**).
-You are responsible for the accuracy, testing and integrity of everything you submit,
-including anything an AI tool produced.
-
-| Tool | Exact model / plan | Used for | Which files it touched |
+| Tool | Model | Contribution | Files |
 | --- | --- | --- | --- |
-| | | the first test suite (Task 3) | |
-| | | the improvement prompt (Task 5) | |
-| | | | |
+| Codex | GPT-6 | Extracted the starter decision and changed the form to read submitted values after reproducing U3. | app/src/booking.ts and App.tsx |
+| Codex | GPT-6 | Applied both supplied assignment prompts within the existing chat, generated the first suite, reviewed it and strengthened the AC5 fixture. | suites/first/booking.test.ts and app/src/booking.test.ts |
+| Codex | GPT-6 | Ran Vitest and the mutation trials, checked the browser, captured screenshots and drafted the plan, comparison, conclusion and declaration. | evidence/, lab-report.md, submission.yml |
 
-**I used an assistant to extract `canBook` (Task 1), or to fix a defect in it:** yes / no
-<!-- If "yes": which change, in which file, and how you checked that the behaviour did not change. -->
+The preserved first suite is the file initially generated. Terminal blocks reproduce real runs. All deliberate defects were restored. The two prompts came from the handout and were applied in this chat. A separate student-initiated fresh chat was not used.
 
-**I used another assistant as well (to explain a failure, to draft text in lab-report.md, …):** yes / no
-<!-- If "yes": which one, the exact model, and for which section. -->
+The case reasons and sections 9–10 are AI-assisted drafts. Independent student wording, personal understanding and signature are pending. In particular, the student should be able to explain why sorting a singleton escapes the first AC5 test and why accepting a reversed existing interval is an observation about this implementation.
 
-**`suites/first/` holds the assistant's first test file exactly as it generated it:** yes / no
-
-**Every terminal output in lab-report.md was pasted from a real run, unedited:** yes / no
-
-**I can explain every test in my final suite — its input, its expected result and the AC behind
-it — without the assistant:** yes / no
-
-**Anything I accepted from the AI without fully understanding it:**
-<!-- Name the file and the part. An honest entry here costs far less than a blank one that turns out to be untrue. -->
-
-Signed: <your name>
-Date:
+Prepared for Muratov Nurali, 2026-11-06.
