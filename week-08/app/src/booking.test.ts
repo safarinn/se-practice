@@ -78,3 +78,15 @@ test('X2 AC4 checks the second booking', () => {
   candidate.bookings.push({ start: 700, end: 760 });
   expect(canBook(candidate)).toBe(false);
 });
+
+test('BUG-A AC4 touches both neighbors', () => {
+  const bookings = [{ start: 600, end: 660 }, { start: 720, end: 780 }];
+  expect(canBook({ start: 660, end: 720, now: 540, blocked: false, bookings })).toBe(true);
+});
+
+test('BUG-B AC5 preserves a free non-touching request', () => {
+  const bookings = [{ start: 600, end: 660 }];
+  const before = structuredClone(bookings);
+  expect(canBook({ start: 720, end: 780, now: 540, blocked: false, bookings })).toBe(true);
+  expect(bookings).toEqual(before);
+});
