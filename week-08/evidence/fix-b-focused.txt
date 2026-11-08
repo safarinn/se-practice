@@ -1,0 +1,14 @@
+
+> smart-campus-availability@0.0.0 test
+> vitest run -t BUG-B
+
+
+ RUN  v3.2.4 /Users/nuralimuratov/Documents/Codex/2026-11-01/wor/work/w8/week-08/app
+
+ ✓ src/booking.test.ts (19 tests | 18 skipped) 1ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 18 skipped (19)
+   Start at  22:07:31
+   Duration  185ms (transform 21ms, setup 0ms, collect 19ms, tests 1ms, environment 0ms, prepare 32ms)
+
