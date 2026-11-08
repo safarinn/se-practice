@@ -1,31 +1,23 @@
 # AI Usage Disclosure — Week 08
 
-Required by the course academic policy (Generative AI use level **D — AI-integrated**).
-You are responsible for the accuracy, testing and integrity of everything you submit,
-including anything an AI tool produced.
-
 | Tool | Exact model / plan | Used for | Which files it touched |
 | --- | --- | --- | --- |
-| | | diagnosis without the skill (Task 4) | none — "Do not edit code" |
-| | | diagnosis with bug-detector (Task 5) | none — "Do not edit code" |
-| | | | |
+| Codex independent agent /root/without_skill | GPT-6; exact deployment version not displayed | Diagnosis without skill, fresh context | evidence/without-skill.md only |
+| Codex independent agent /root/with_skill | GPT-6; exact deployment version not displayed | Diagnosis using supplied skill text, fresh context | evidence/with-skill.md only |
+| Codex parent assistant | GPT-6; exact deployment version not displayed | Setup, tests, minimal fixes, execution, report, archive and PR | Week 08 deliverables except unchanged assignment source/checkers |
 
-**`skills/bug-detector/SKILL.md` was typed by me from the deck's text, not generated:** yes / no
+**SKILL.md was typed by me from the deck, not generated:** no. Codex copied the exact supplied text programmatically and created the ZIP.
 
-**I applied the patches myself, one minimal change per bug, after reviewing what the assistant
-proposed:** yes / no
-<!-- If an assistant edited app/ directly, say which change and how you reviewed it. -->
+**I applied the patches myself:** no. Codex changed the comparison line and removed bookings.push in separate commits after reviewing both diagnoses, then ran focused and full tests.
 
-**I used another assistant as well (to explain a failure, to draft text in lab-report.md, …):** yes / no
-<!-- If "yes": which one, the exact model, and for which section. -->
+**I used another assistant for explanation/report drafting:** yes. The parent Codex assistant drafted all report sections, including hypotheses, comparison, limitation and conclusion. The hypotheses were documented after the independent responses, not authored by the student before asking an assistant.
 
-**Every terminal output in lab-report.md was pasted from a real run, unedited:** yes / no
+**Every terminal output is from a real run, unedited:** yes. Raw stdout/stderr files are in evidence; enclosing report labels are separate.
 
-**I can explain both bugs and both fixes — which line, why it was wrong, which test proves the
-fix — without the assistant:** yes / no
+**I can explain both bugs without the assistant:** not yet confirmed by the student. This declaration does not assert personal understanding or an independent signature.
 
-**Anything I accepted from the AI without fully understanding it:**
-<!-- Name the file and the part. An honest entry here costs far less than a blank one that turns out to be untrue. -->
+**Anything accepted without fully understanding it:** student review is pending for the two patches, regression fixtures and report reasoning.
 
-Signed: <your name>
-Date:
+The two comparison agents were explicitly authorized by the student and started with fresh contexts. Only the second read the supplied skill. This was a prompt-only simulation, not native installation. install.png is a genuine screenshot of the archived record in TextEdit; it is not a live chat screenshot or installation confirmation.
+
+Prepared for: Muratov Nurali. Date: 2026-11-08. Student review/signature pending.

@@ -1,0 +1,6 @@
+Archive:  skills/bug-detector.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+      570  11-08-2026 22:05   bug-detector/SKILL.md
+---------                     -------
+      570                     1 file
