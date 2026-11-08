@@ -1,0 +1,93 @@
+
+> smart-campus-availability@0.0.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/nuralimuratov/Documents/Codex/2026-11-01/wor/work/w8/week-08/app
+
+ ❯ src/booking.test.ts (19 tests | 2 failed) 10ms
+   ✓ T01 AC4 touching after 1ms
+   ✓ T02 AC1 starts now 0ms
+   ✓ T03 AC1 zero duration 0ms
+   ✓ T04 AC1 reversed 0ms
+   ✓ T05 AC1 past day end 0ms
+   ✓ T06 AC2 120 minutes 0ms
+   ✓ T07 AC2 121 minutes 0ms
+   ✓ T08 AC4 touching before 0ms
+   ✓ T09 AC4 partial overlap 0ms
+   ✓ T10 AC4 contains booking 0ms
+   ✓ T11 AC4 inside booking 0ms
+   ✓ T12 AC4 identical interval 0ms
+   ✓ T13 AC3 blocked room 0ms
+   ✓ T14 AC4 empty schedule 0ms
+   × AC5 preserves existing bookings after an available check 5ms
+     → expected [ { start: 900, end: 960 }, …(2) ] to deeply equal [ { start: 900, end: 960 }, …(1) ]
+   ✓ X1 AC1 allows an end at midnight 0ms
+   ✓ X2 AC4 checks the second booking 0ms
+   ✓ BUG-A AC4 touches both neighbors 0ms
+   × BUG-B AC5 preserves a free non-touching request 1ms
+     → expected [ { start: 600, end: 660 }, …(1) ] to deeply equal [ { start: 600, end: 660 } ]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking.test.ts > AC5 preserves existing bookings after an available check
+AssertionError: expected [ { start: 900, end: 960 }, …(2) ] to deeply equal [ { start: 900, end: 960 }, …(1) ]
+
+- Expected
++ Received
+
+@@ -5,6 +5,10 @@
+    },
+    {
+      "end": 660,
+      "start": 600,
+    },
++   {
++     "end": 720,
++     "start": 660,
++   },
+  ]
+
+ ❯ src/booking.test.ts:69:30
+     67|   const before = structuredClone(candidate.bookings);
+     68|   expect(canBook(candidate)).toBe(true);
+     69|   expect(candidate.bookings).toEqual(before);
+       |                              ^
+     70| });
+     71| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/booking.test.ts > BUG-B AC5 preserves a free non-touching request
+AssertionError: expected [ { start: 600, end: 660 }, …(1) ] to deeply equal [ { start: 600, end: 660 } ]
+
+- Expected
++ Received
+
+  [
+    {
+      "end": 660,
+      "start": 600,
+    },
++   {
++     "end": 780,
++     "start": 720,
++   },
+  ]
+
+ ❯ src/booking.test.ts:91:20
+     89|   const before = structuredClone(bookings);
+     90|   expect(canBook({ start: 720, end: 780, now: 540, blocked: false, boo…
+     91|   expect(bookings).toEqual(before);
+       |                    ^
+     92| });
+     93| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 17 passed (19)
+   Start at  22:07:30
+   Duration  273ms (transform 23ms, setup 0ms, collect 24ms, tests 10ms, environment 0ms, prepare 32ms)
+

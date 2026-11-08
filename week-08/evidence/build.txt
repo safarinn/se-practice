@@ -1,0 +1,13 @@
+
+> smart-campus-availability@0.0.0 build
+> tsc && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 32 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.42 kB │ gzip:  0.28 kB
+dist/assets/index-X8OGNIvT.css    0.66 kB │ gzip:  0.36 kB
+dist/assets/index-Da0KogiT.js   144.94 kB │ gzip: 46.71 kB
+✓ built in 448ms

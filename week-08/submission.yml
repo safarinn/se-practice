@@ -1,0 +1,38 @@
+schema: 1
+week: "08"
+student:
+  name: Muratov Nurali
+  student_id: 24B031887
+  github: safarinn
+assistant:
+  tool: Codex
+  model: GPT-6
+skill:
+  environment: prompt-only
+  invoked: not-shown
+project:
+  language: ts
+  vitest: 3.2.4
+counts:
+  tests_final: 19
+  buggy_failed: 3
+  defects_logged: 2
+  lines_changed: 2
+checker:
+  pass: 31
+  fail: 0
+  error: 0
+  commit: ddbb6d9
+  known_fails: []
+verdict:
+  skill_helped: no-difference
+review_findings:
+  - BUG-A uses strict comparisons so touching endpoints are available.
+  - BUG-B regression uses a separated slot to isolate mutation before any fix.
+  - AC5 originally failed at availability before its preservation assertion.
+  - Skill step 4 was also followed by the plain answer; both separated evidence from hypotheses.
+honesty:
+  buggy_function_pasted_unchanged: yes
+  same_input_both_chats: yes
+  outputs_unedited: yes
+  ai_usage_disclosed: yes
