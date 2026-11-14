@@ -1,0 +1,19 @@
+Week 09 submission.yml - shape only, never quality   (submission.yml)
+
+PASS   D1   schema and week                                          schema 1, week 09
+PASS   D2   student.name                                             student.name: Muratov Nurali
+PASS   D3   student.student_id                                       student.student_id: 24B031887
+PASS   D4   student.github                                           student.github: safarinn
+PASS   D5   assistant.tool                                           assistant.tool: Codex
+PASS   D6   assistant.model is an exact model name or not displayed  assistant.model: not displayed
+PASS   D7   assistant.fresh_chats is yes or no                       fresh_chats: yes
+PASS   D8   checker numbers add up                                   pass + fail + error = 30
+PASS   D9   checker numbers match a run made now                     declared 30/0/0, a run now gives 30/0/0
+PASS   D10  checker.commit                                           checker.commit: 0b5e33b
+PASS   D11  known_fails lists exactly what still fails               known_fails matches the checker: []
+PASS   D12  calls.first_run_s_fails is 0-12                          first_run_s_fails: 9
+PASS   D13  calls.r3 matches the file in calls/                      r3: asked, and calls/ agrees
+PASS   D14  review_findings: three, each naming what it is about     6 review findings
+PASS   D15  honesty block answered                                   honesty block answered
+------------------------------------------------------------------------------
+SUMMARY pass=15 fail=0 error=0   (15 checks)

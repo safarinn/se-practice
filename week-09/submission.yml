@@ -1,0 +1,31 @@
+schema: 1
+week: "09"
+student:
+  name: Muratov Nurali
+  student_id: 24B031887
+  github: safarinn
+assistant:
+  tool: Codex
+  model: not displayed
+  fresh_chats: yes
+calls:
+  r3: asked
+  first_run_s_fails: 9
+checker:
+  pass: 30
+  fail: 0
+  error: 0
+  commit: 0b5e33b
+  known_fails: []
+review_findings:
+  - S03 and S10 require integer times, not strings or fractional minutes.
+  - S05 needs additionalProperties false and S08 needs both nested interval fields required.
+  - R1 correctly uses now 540 and a requested end 660 touching the existing start 660.
+  - R2 correctly uses end 990 and remains schema-valid despite violating AC2 and AC3.
+  - R3 asks for missing context but its tomorrow reference-time wording remains ambiguous.
+  - A5 can discard unrelated tracked changes, so the rollback needs explicit approval.
+honesty:
+  definition_written_by_me: no
+  calls_unedited: yes
+  outputs_unedited: yes
+  ai_usage_disclosed: yes
