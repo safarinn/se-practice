@@ -1,0 +1,30 @@
+{
+  "method": "Three fresh Codex subagent contexts, fork_turns=none, explicitly authorized by user. Each read only its own prompt file; no booking function was executed.",
+  "model": "not displayed",
+  "trials": [
+    {
+      "request": "R1",
+      "agent": "/root/week09_r1",
+      "prompt_file": "evidence/r1-prompt.txt",
+      "prompt_sha256": "339da1db82ea6465705c1fa0f95b58baf553da5773a849f8015577efd007c5b6",
+      "response_file": "calls/r1.json",
+      "response_sha256": "1506820ed633fd85765862a6ece311e7b3ff5b65e5807be137e420f12e5dd9a7"
+    },
+    {
+      "request": "R2",
+      "agent": "/root/week09_r2",
+      "prompt_file": "evidence/r2-prompt.txt",
+      "prompt_sha256": "07d283a8fb5b6c6f7a1de3ce1556dc818ae30b001ca0628c029d8a995ead6d2a",
+      "response_file": "calls/r2.json",
+      "response_sha256": "1d0266a3aac271a676c6c85048dfa969ff6af0f0337fba4349482f7d14a37ebd"
+    },
+    {
+      "request": "R3",
+      "agent": "/root/week09_r3",
+      "prompt_file": "evidence/r3-prompt.txt",
+      "prompt_sha256": "2033309e6b32d1397b4fd19eafaa98f899668a2720c5c8f789768f88cab6f1c0",
+      "response_file": "calls/r3.txt",
+      "response_sha256": "dd1af75c7eb9f0eb13996256d7c3cacf70f2017361991d10aa937d108f8aeb36"
+    }
+  ]
+}
