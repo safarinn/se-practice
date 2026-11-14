@@ -1,0 +1,191 @@
+{
+  "week": "09",
+  "rows": [
+    {
+      "id": "D1",
+      "title": "tool/check_room.json exists and is valid JSON",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "D2",
+      "title": "has name, description and inputSchema",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "D3",
+      "title": "name is exactly \"check_room\"",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "D4",
+      "title": "description: 25+ words, says minutes, 1440, and that it does not save",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "D5",
+      "title": "inputSchema: an object with exactly the five fields, all required",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "D6",
+      "title": "inputSchema uses only the keywords listed in README section 5",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "S01",
+      "title": "the R1 call, valid -> accept",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "S02",
+      "title": "no existing bookings: bookings = [] -> accept",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "S03",
+      "title": "end as a string: \"11:00\" -> refuse",
+      "verdict": "PASS",
+      "detail": "$.end: expected integer"
+    },
+    {
+      "id": "S04",
+      "title": "now missing -> refuse",
+      "verdict": "PASS",
+      "detail": "$: now is required"
+    },
+    {
+      "id": "S05",
+      "title": "an extra field: \"room\": \"204\" -> refuse",
+      "verdict": "PASS",
+      "detail": "$: room is not allowed"
+    },
+    {
+      "id": "S06",
+      "title": "start below the day: -30 -> refuse",
+      "verdict": "PASS",
+      "detail": "$.start: below minimum 0"
+    },
+    {
+      "id": "S07",
+      "title": "end beyond the day: 1500 -> refuse",
+      "verdict": "PASS",
+      "detail": "$.end: above maximum 1440"
+    },
+    {
+      "id": "S08",
+      "title": "a booking with no end: {start: 660} -> refuse",
+      "verdict": "PASS",
+      "detail": "$.bookings[0]: end is required"
+    },
+    {
+      "id": "S09",
+      "title": "blocked as a string: \"false\" -> refuse",
+      "verdict": "PASS",
+      "detail": "$.blocked: expected boolean"
+    },
+    {
+      "id": "S10",
+      "title": "start not a whole minute: 600.5 -> refuse",
+      "verdict": "PASS",
+      "detail": "$.start: expected integer"
+    },
+    {
+      "id": "S11",
+      "title": "end at the end of the day: 1440 -> accept",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "S12",
+      "title": "a booking as a pair: [660, 720] -> refuse",
+      "verdict": "PASS",
+      "detail": "$.bookings[0]: expected object"
+    },
+    {
+      "id": "F1",
+      "title": "calls/r1.json: a call to check_room",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F2",
+      "title": "calls/r1.json: arguments valid against your schema",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F3",
+      "title": "calls/r1.json: arguments equal the expected ones (README section 5, Part 2)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F4",
+      "title": "calls/r2.json: a call to check_room",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F5",
+      "title": "calls/r2.json: arguments valid against your schema",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F6",
+      "title": "calls/r2.json: arguments equal the expected ones (README section 5, Part 2)",
+      "verdict": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "F7",
+      "title": "calls/r3: exactly one of r3.json (it called) or r3.txt (it asked), not empty",
+      "verdict": "PASS",
+      "detail": "r3.txt"
+    },
+    {
+      "id": "L1",
+      "title": "section 5 names at least two acceptance criteria (AC1-AC6) the schema cannot check",
+      "verdict": "FAIL",
+      "detail": "found: none"
+    },
+    {
+      "id": "L2",
+      "title": "section 6: A1-A8 each have allow / ask / block and a reason of 5+ words",
+      "verdict": "FAIL",
+      "detail": "A1 decision, A2 decision, A3 decision, A4 decision, A5 decision, A6 decision, A7 decision, A8 decision"
+    },
+    {
+      "id": "L3",
+      "title": "section 7 names the checkpoint commit (a SHA)",
+      "verdict": "FAIL",
+      "detail": "no 7-40 character commit hash in section 7"
+    },
+    {
+      "id": "L4",
+      "title": "section 10: a conclusion of 80-150 words",
+      "verdict": "FAIL",
+      "detail": "0 words"
+    },
+    {
+      "id": "L5",
+      "title": "AI_USAGE.md filled in (a tool row, and signed)",
+      "verdict": "FAIL",
+      "detail": "not signed"
+    }
+  ],
+  "counts": {
+    "PASS": 25,
+    "FAIL": 5,
+    "ERROR": 0
+  },
+  "total": 30
+}

@@ -1,0 +1,75 @@
+You can call exactly one tool. Its definition is below.
+Reply to the request with exactly one JSON object of the form
+{"name": "<tool name>", "arguments": { ... }} and nothing else - no prose, no code fence.
+Convert every time to minutes since midnight. If the request does not give you enough
+information to fill every required argument, do not guess: reply with one short question instead.
+
+TOOL DEFINITION:
+{
+  "name": "check_room",
+  "description": "Check whether one room is available for a requested interval within a single day. All times are whole minutes since midnight in the inclusive range 0–1440. Supply the current time, blocked status, and existing bookings explicitly; do not guess missing information. The tool only checks availability and does not save, create, or change a booking. The function evaluates ordering, future start, the 120-minute duration limit, blocked status, and overlaps; intervals touching at endpoints are allowed. Return Available or Unavailable. This interface has no date or room selector.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "start": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 1440,
+        "description": "Requested start time. Whole minutes since midnight, inclusive range 0–1440; 10:00 = 600 and 24:00 = 1440."
+      },
+      "end": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 1440,
+        "description": "Requested end time. Whole minutes since midnight, inclusive range 0–1440; 10:00 = 600 and 24:00 = 1440."
+      },
+      "now": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 1440,
+        "description": "Current time explicitly supplied for the same day context. Whole minutes since midnight, inclusive range 0–1440; 10:00 = 600 and 24:00 = 1440."
+      },
+      "blocked": {
+        "type": "boolean",
+        "description": "Whether the room is blocked. Both true and false are valid inputs; the function decides availability."
+      },
+      "bookings": {
+        "type": "array",
+        "description": "All known existing bookings for the room in the same day context. An empty list is valid only when no bookings are present.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1440,
+              "description": "Existing booking start. Whole minutes since midnight, inclusive range 0–1440; 10:00 = 600 and 24:00 = 1440."
+            },
+            "end": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1440,
+              "description": "Existing booking end. Whole minutes since midnight, inclusive range 0–1440; 10:00 = 600 and 24:00 = 1440."
+            }
+          },
+          "required": [
+            "start",
+            "end"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "start",
+      "end",
+      "now",
+      "blocked",
+      "bookings"
+    ],
+    "additionalProperties": false
+  }
+}
+
+REQUEST:
+It's 9:00 now. Is the room free from 10:00 to 11:00? It isn't blocked, and it already has one booking, from 11:00 to 12:00.

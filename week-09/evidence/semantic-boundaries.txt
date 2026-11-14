@@ -1,0 +1,8 @@
+Schema-only probes using the unmodified supplied Python validator.
+No JavaScript or canBook execution; acceptance is about shape only.
+
+equal endpoints: ACCEPT {"start": 600, "end": 600, "now": 540, "blocked": false, "bookings": []}
+start before now: ACCEPT {"start": 600, "end": 660, "now": 700, "blocked": false, "bookings": []}
+duration 150 minutes: ACCEPT {"start": 600, "end": 750, "now": 540, "blocked": false, "bookings": []}
+blocked room: ACCEPT {"start": 600, "end": 660, "now": 540, "blocked": true, "bookings": []}
+overlapping booking: ACCEPT {"start": 600, "end": 660, "now": 540, "blocked": false, "bookings": [{"start": 610, "end": 630}]}
