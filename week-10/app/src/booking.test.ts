@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { canBook } from './booking';
+import { canBook, toRequest } from './booking';
 
 function request(start: number, end: number) {
   return { start, end, now: 540, blocked: false, bookings: [{ start: 600, end: 660 }] };
@@ -89,4 +89,9 @@ test('BUG-B AC5 preserves a free non-touching request', () => {
   const before = structuredClone(bookings);
   expect(canBook({ start: 720, end: 780, now: 540, blocked: false, bookings })).toBe(true);
   expect(bookings).toEqual(before);
+});
+
+test('R2 AC1: the form times become minutes, and "Ends at 24:00" becomes 1440', () => {
+  expect(toRequest({ start: '11:30', end: '12:15', now: '09:00', endOfDay: false })).toEqual({ start: 690, end: 735, now: 540 });
+  expect(toRequest({ start: '23:00', end: '', now: '09:00', endOfDay: true })).toEqual({ start: 1380, end: 1440, now: 540 });
 });
