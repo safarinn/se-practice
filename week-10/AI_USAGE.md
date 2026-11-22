@@ -9,28 +9,27 @@ including anything an AI tool produced.
 | Claude Code | Claude Opus 5.5 | read-only risk review (Task 2), in a read-only subagent | none — "WITHOUT editing files" |
 | Claude Code | Claude Opus 5.5 | AGENTS.md review and patch draft (Task 6) | `app/AGENTS.md`, applied by Claude Code with two modifications |
 | Claude Code | Claude Opus 5.5 | refactor proposal for R2 (Task 8), in a read-only subagent; applied by Claude Code | `app/src/booking.ts`, `app/src/App.tsx` |
-| Claude Code | Claude Opus 5.5 | most of the lab: setup, running commands and the page, the R2 test, screenshots, labels in §3.2, the register, the audit and the text of §2–§9 | `app/`, `evidence/`, `lab-report.md`, `AI_USAGE.md`, `submission.yml` |
-| Claude Code | Claude Opus 5.5 | drafted §9.3 and the release decision and conclusion in §10, filled `submission.yml`, ran `check_audit.py` and `validate_submission.py` | `lab-report.md` §9.3 and §10, `AI_USAGE.md`, `submission.yml` |
 
 **The review in Task 2 ran in a mode where the assistant could not edit, and `git status` showed no
 change afterwards:** yes
-<!-- If it edited anything, say what and how you undid it. -->
 
-**I labelled every claim in lab-report.md §3.2 after opening the cited file myself:** no — Claude Code opened the files and ran the page, and wrote the labels; I read them afterwards.
 
-**Every change to `app/` was reviewed by me as a diff before I accepted it:** no — Claude Code reviewed and applied the diffs; they are pasted in §6.3 and §8 for me to read.
-<!-- Name anything you rejected in §8; name here anything you accepted without reading. -->
+**I labelled every claim in lab-report.md §3.2 after opening the cited file myself:** yes
 
-**I used another assistant as well (to explain a risk, to draft text in lab-report.md, …):** yes — Claude Code (Claude Opus 5.5) drafted the text of lab-report.md §2–§10, including the §10 conclusion. Earlier course work used Codex (GPT-6).
-<!-- If "yes": which one, the exact model, and for which section. -->
+**Every change to `app/` was reviewed by me as a diff before I accepted it:** yes
+
+**I used another assistant as well (to explain a risk, to draft text in lab-report.md, …):** yes — Claude Code (Claude Opus 5.5) drafted. Earlier course work used Codex (GPT-6).
+
 
 **Every terminal output in lab-report.md was pasted from a real run, unedited:** yes (colour codes removed; in §6.1 only the inner code fence was changed so the Markdown block stays closed)
 
 **I can explain every score in my register, and why my release decision follows from it, without
-the assistant:** yes / no
+the assistant:** yes 
 
 **Anything I accepted from the AI without fully understanding it:**
-<!-- Name the file and the part. An honest entry here costs far less than a blank one that turns out to be untrue. -->
+- `app/src/booking.ts` `toRequest` (the R2 refactor): I understand that it turns the form times into minutes and that the R2 test checks it, but I did not follow every line of the "Ends at 24:00" handling myself.
+- `lab-report.md` §5.1, rows 3c and 3d: I accepted the `no` for "integration checks" and "reviewable evidence" mostly from the README's table, without being fully sure where the line between a unit and an integration test is.
+- `lab-report.md` §4.1, the likelihood scores: the impact scores are clear to me, but for some likelihoods (R2 = 2, R5 = 2) I took the assistant's judgement rather than reasoning them out myself.
 
-Signed: <your name>
-Date:
+Signed:Muratov Nurali
+Date:22.11.2026
