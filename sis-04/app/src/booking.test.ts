@@ -1,11 +1,12 @@
 import { expect, test } from 'vitest';
-import { canBook } from './booking';
+import { canBook, checkRoom } from './booking';
+import type { Room } from './rooms';
 
 function request(start: number, end: number) {
   return { start, end, now: 540, blocked: false, bookings: [{ start: 600, end: 660 }] };
 }
 
-test('T01 AC4 touching after', () => {
+test('T01 B3 AC4 touching after', () => {
   expect(canBook(request(660, 720))).toBe(true);
 });
 
@@ -25,11 +26,11 @@ test('T05 AC1 past day end', () => {
   expect(canBook(request(1380, 1441))).toBe(false);
 });
 
-test('T06 AC2 120 minutes', () => {
+test('T06 B1 AC2 120 minutes', () => {
   expect(canBook(request(720, 840))).toBe(true);
 });
 
-test('T07 AC2 121 minutes', () => {
+test('T07 B2 AC2 121 minutes', () => {
   expect(canBook(request(720, 841))).toBe(false);
 });
 
@@ -37,7 +38,7 @@ test('T08 AC4 touching before', () => {
   expect(canBook(request(570, 600))).toBe(true);
 });
 
-test('T09 AC4 partial overlap', () => {
+test('T09 B4 AC4 partial overlap', () => {
   expect(canBook(request(630, 690))).toBe(false);
 });
 
@@ -89,4 +90,52 @@ test('BUG-B AC5 preserves a free non-touching request', () => {
   const before = structuredClone(bookings);
   expect(canBook({ start: 720, end: 780, now: 540, blocked: false, bookings })).toBe(true);
   expect(bookings).toEqual(before);
+});
+
+// checkRoom: a fixed catalog for these tests only, so editing ROOMS cannot change a result.
+function catalog(): Room[] {
+  return [
+    { id: 'r1', name: 'Test room 1', capacity: 8, equipment: ['whiteboard'], blocked: false, bookings: [{ start: 600, end: 660 }] },
+    { id: 'r2', name: 'Test room 2', capacity: 12, equipment: ['projector'], blocked: false, bookings: [] },
+    { id: 'r3', name: 'Test room 3', capacity: 20, equipment: ['projector'], blocked: true, bookings: [] },
+  ];
+}
+
+test('F5 the same times give a different result in another room', () => {
+  const rooms = catalog();
+  const request = { start: 630, end: 690, now: 540 };
+  expect(checkRoom(rooms, 'r1', request)).toBe(false);
+  expect(checkRoom(rooms, 'r2', request)).toBe(true);
+});
+
+test('F3 AC3 a blocked room with a free valid slot is not available', () => {
+  expect(checkRoom(catalog(), 'r3', { start: 720, end: 780, now: 540 })).toBe(false);
+});
+
+test('F3 an unknown room id is not available', () => {
+  expect(checkRoom(catalog(), 'nope', { start: 720, end: 780, now: 540 })).toBe(false);
+});
+
+test('B3 AC4 checkRoom allows a request touching the chosen room booking', () => {
+  expect(checkRoom(catalog(), 'r1', { start: 660, end: 720, now: 540 })).toBe(true);
+});
+
+test('B1 AC2 checkRoom allows exactly 120 minutes', () => {
+  expect(checkRoom(catalog(), 'r2', { start: 720, end: 840, now: 540 })).toBe(true);
+});
+
+test('B2 AC2 checkRoom rejects 121 minutes', () => {
+  expect(checkRoom(catalog(), 'r2', { start: 720, end: 841, now: 540 })).toBe(false);
+});
+
+test('AC1 checkRoom rejects a request in the past', () => {
+  expect(checkRoom(catalog(), 'r2', { start: 480, end: 540, now: 540 })).toBe(false);
+});
+
+test('AC5 checkRoom does not change the catalog', () => {
+  const rooms = catalog();
+  const before = structuredClone(rooms);
+  expect(checkRoom(rooms, 'r1', { start: 660, end: 720, now: 540 })).toBe(true);
+  expect(checkRoom(rooms, 'r1', { start: 630, end: 690, now: 540 })).toBe(false);
+  expect(rooms).toEqual(before);
 });
