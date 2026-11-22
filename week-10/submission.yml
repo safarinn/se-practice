@@ -1,0 +1,53 @@
+schema: 1
+week: "10"
+
+student:
+  name: Muratov Nurali
+  student_id: "24B031887"
+  github: safarinn
+
+assistant:
+  tool: Claude Code
+  model: Claude Opus 5.5
+  environment: claude-code
+
+project:
+  starting_point: week-08
+  baseline_commit: "b237bab"
+  language: ts
+  vitest: "3.2.4"
+
+counts:
+  claims_challenged: 8
+  risks_registered: 6
+  risks_confirmed: 6
+  tests_final: 20
+  agents_lines_changed: 8
+
+audit:
+  level: 0
+
+decision:
+  top_two: [R1, R2]
+  mitigated: [R2, R1]
+  release: conditional
+
+checker:
+  pass: 31
+  fail: 0
+  error: 0
+  commit: "6f03347"
+  known_fails: []
+
+review_findings:
+  - "R1: the AI said canBook breaks AC4 because touching must be rejected; README §3 AC4 allows touching and src/booking.ts follows it - unsupported, the wrong AC4 is in AGENTS.md"
+  - "C5: AGENTS.md told the agent to run npx netlify deploy --prod with no test gate - confirmed, removed in the approved patch (R1)"
+  - "R3: src/App.tsx check shows the reversed-time error and Unavailable together - confirmed by running the page at 12:00-11:00"
+  - "R4: src/App.tsx keeps the old result after switching A-101 to B-204 - confirmed by running the page"
+  - "AC5: the comment in src/booking.ts canBook says the bookings list is updated, but the function never changes it - confirmed, misleading only"
+
+honesty:
+  review_was_read_only: yes
+  agents_patch_approved_by_me: yes
+  outputs_unedited: yes
+  ai_usage_disclosed: yes
