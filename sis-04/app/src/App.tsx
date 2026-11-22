@@ -1,14 +1,7 @@
 import { useState, type FormEvent } from 'react';
 
-import { canBook } from './booking';
-
-type Interval = { start: number; end: number };
-type Room = { id: string; name: string; blocked: boolean; bookings: Interval[] };
-
-const ROOMS: Room[] = [
-  { id: 'a101', name: 'Room A-101', blocked: false, bookings: [{ start: 600, end: 660 }] },
-  { id: 'b204', name: 'Room B-204', blocked: false, bookings: [] },
-];
+import { checkRoom } from './booking';
+import { ROOMS } from './rooms';
 
 const toMinutes = (value: string) => {
   const [h, m] = value.split(':').map(Number);
@@ -19,7 +12,6 @@ const fmt = (m: number) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${Str
 export default function App() {
   const [roomId, setRoomId] = useState('a101');
   const [now, setNow] = useState('09:00');
-  const [blocked, setBlocked] = useState(false);
   const [start, setStart] = useState('11:00');
   const [end, setEnd] = useState('12:00');
   const [endOfDay, setEndOfDay] = useState(false);
@@ -48,7 +40,7 @@ export default function App() {
       setError('');
     }
 
-    setResult(canBook({ start: s, end: e, now: n, blocked, bookings: room.bookings }));
+    setResult(checkRoom(ROOMS, roomId, { start: s, end: e, now: n }));
   }
 
   return (
@@ -57,14 +49,13 @@ export default function App() {
       <form onSubmit={check}><div className="row">
         <label>Room
           <select value={roomId} onChange={e => setRoomId(e.target.value)}>
-            {ROOMS.map(r => <option key={r.id} value={r.id}>{r.name}</option>)}
+            {ROOMS.map(r => <option key={r.id} value={r.id}>{r.name}{r.blocked ? ' (blocked)' : ''}</option>)}
           </select>
         </label>
         <label>Current time<input type="time" name="now" value={now} onChange={e => setNow(e.target.value)} /></label>
         <label>Start<input type="time" name="start" value={start} onChange={e => setStart(e.target.value)} /></label>
         <label>End<input type="time" name="end" value={end} disabled={endOfDay} onChange={e => setEnd(e.target.value)} /></label>
         <label className="inline"><input type="checkbox" checked={endOfDay} onChange={e => setEndOfDay(e.target.checked)} /> Ends at 24:00</label>
-        <label className="inline"><input type="checkbox" checked={blocked} onChange={e => setBlocked(e.target.checked)} /> Room blocked</label>
       </div>
       <button type="submit">Check availability</button></form>
       {error && <p className="error">{error}</p>}
