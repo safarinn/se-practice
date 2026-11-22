@@ -14,27 +14,27 @@ schema: 1
 assignment: "sis-04"            # do not edit
 
 student:
-  name:                         # as in the university register
-  student_id:                   # e.g. 00X000000
-  group:                        # your group code, as in the timetable
-  github:                       # username only, not a URL
+  name: Muratov Nurali
+  student_id: "24B031887"
+  group: "Monday 16-19:00"
+  github: safarinn
 
 assistant:
-  tool:                         # the assistant you worked with, e.g. ChatGPT (web), Claude.ai, Claude Code
-  model:                        # exactly as in report.md section 1, or: not displayed
+  tool: Claude Code
+  model: Claude Opus 5.5
 
 project:                        # exactly as in report.md section 1
-  start_from:                   # week-08 | week-07 | sis-03 | starter
-  baseline_commit:              # the commit that brought the starting point in unchanged
-  language:                     # ts | js
-  vitest:                       # the version from the "RUN  v..." line, e.g. 3.2.4
+  start_from: week-08
+  baseline_commit: "8bd6e50"
+  language: ts
+  vitest: "3.2.4"
 
 counts:                         # the checker prints most of these under --json "measured"
-  rooms:                        # rooms in ROOMS (src/rooms)
-  tests_original:               # tests in the baseline run, report.md 1.1 (0 if there were none)
-  tests_final:                  # tests in your final test files
-  risks:                        # rows in report.md 3.1
-  exchanges:                    # complete exchanges in report.md section 8
+  rooms: 5
+  tests_original: 19
+  tests_final: 41
+  risks: 6
+  exchanges: 3
 
 checker:                        # from your LAST run of python tests/check_sis.py
   pass:
@@ -50,12 +50,14 @@ review_findings:
   # Worthless:        "The refactoring improved the code"
   # Worth everything: "F2: the assistant's filter used equipment.some(), so a room with only a projector
   #                    matched projector + whiteboard; the F2 test caught it"
-  -
-  -
-  -
+  - "F3: the starting App.tsx passed a page checkbox to canBook and never read room.blocked; checkRoom now reads the chosen room's blocked flag (src/booking.ts)"
+  - "F5: the old result stayed after switching rooms because setResult(null) was only in check(); every change now clears it (src/App.tsx, switch-a / switch-b)"
+  - "F4: the assistant's draft F4 test claimed each criterion matched some room, but no room had computers, so it duplicated the previous test - deleted (src/filter.test.ts)"
+  - "B5: the assistant's filter tests sorted ids; the page falls back to the first filtered room, so the tests now keep catalog order (src/filter.test.ts)"
+  - "AC2: the assistant proposed MAX_DURATION_MIN constants in canBook; rejected, canBook stays as in week-08 (src/booking.ts)"
 
 honesty:
-  baseline_unchanged:           # yes | no   app/ at the baseline commit is the starting point as it was
-  runs_unedited:                # yes | no   every run in report.md is pasted from a real terminal
-  no_invented_metrics:          # yes | no   every number in section 7 was measured as the row says
-  ai_usage_disclosed:           # yes | no   AI_USAGE.md and section 8 are complete
+  baseline_unchanged:   yes        # yes | no   app/ at the baseline commit is the starting point as it was
+  runs_unedited: yes               # yes | no   every run in report.md is pasted from a real terminal
+  no_invented_metrics: yes         # yes | no   every number in section 7 was measured as the row says
+  ai_usage_disclosed:     yes      # yes | no   AI_USAGE.md and section 8 are complete
