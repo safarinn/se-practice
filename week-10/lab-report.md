@@ -741,13 +741,13 @@ Use the same IDs as `known_fails` in `submission.yml`. Write `none` if the run i
 
 | Check | Why it stays |
 | --- | --- |
-| | |
+| none | the last run of `check_audit.py` gave 31 PASS, 0 FAIL, 0 ERROR |
 
 ---
 
 ## 10. Release decision and conclusion
 
-**Decision:** GO / CONDITIONAL / NO-GO
+**Decision:** CONDITIONAL
 
 <!-- Keep one word above. GO is not allowed while any confirmed risk still scores 6 or more.
      Then 80-150 words, in your own words, without the assistant: why this decision, from the
@@ -759,3 +759,5 @@ Use the same IDs as `known_fails` in `submission.yml`. Write `none` if the run i
      but no test covers App.tsx, so a regression there would be invisible." -->
 
 <!-- Write your conclusion below this line -->
+
+CONDITIONAL. The two highest risks are closed and verified. R1 (the playbook told an agent to deploy with `netlify deploy --prod`, add Supabase and a login, and run a missing test script, 3 × 3 = 9) is now 1 × 3 = 3: the approved 8-line patch passes C1–C6 and A3. R2 (the form-to-minutes conversion hidden in the React handler, 2 × 3 = 6) is now 1 × 3 = 3: its test failed before the refactor and passes after; all 20 tests and the build pass. No confirmed risk scores 6 or more, but R3 and R4 (unclear or stale page feedback, 2 × 2 = 4) stay open, owned by me, controlled only by the manual check at two widths. R5 (no linter, CI or hooks) keeps readiness at Level 0, and no test covers `App.tsx`, so a page regression would go unnoticed.
