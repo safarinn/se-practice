@@ -1,0 +1,12 @@
+' diagrams/before.puml — the modules of the starting point (week-08), commit 8bd6e50.
+@startuml
+title Before: week-08 starting point
+component "main.tsx" as Main
+component "App.tsx\n(ROOMS data, toMinutes/fmt,\nform state, blocked checkbox,\ncheck(), rendering)" as App
+component "booking.ts\ncanBook()" as Booking
+component "booking.test.ts\n19 tests" as Tests
+Main --> App
+App --> Booking : canBook()
+Tests --> Booking : canBook()
+note right of App : room data, the blocked flag and\nthe reversed-time rule all live here
+@enduml
