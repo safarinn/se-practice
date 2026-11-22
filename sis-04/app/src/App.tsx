@@ -22,10 +22,6 @@ export default function App() {
 
   function check(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const fields = new FormData(event.currentTarget);
-    const start = String(fields.get('start') ?? '');
-    const end = String(fields.get('end') ?? '');
-    const now = String(fields.get('now') ?? '');
     setResult(null);
     if (!start || !now || (!end && !endOfDay)) {
       setError('Fill in the current time, the start and the end.');
@@ -33,14 +29,12 @@ export default function App() {
     }
     const s = toMinutes(start);
     const e = endOfDay ? 1440 : toMinutes(end);
-    const n = toMinutes(now);
     if (!(s < e)) {
       setError('The end time must be after the start time.');
-    } else {
-      setError('');
+      return;
     }
-
-    setResult(checkRoom(ROOMS, roomId, { start: s, end: e, now: n }));
+    setError('');
+    setResult(checkRoom(ROOMS, roomId, { start: s, end: e, now: toMinutes(now) }));
   }
 
   return (
@@ -52,9 +46,9 @@ export default function App() {
             {ROOMS.map(r => <option key={r.id} value={r.id}>{r.name}{r.blocked ? ' (blocked)' : ''}</option>)}
           </select>
         </label>
-        <label>Current time<input type="time" name="now" value={now} onChange={e => setNow(e.target.value)} /></label>
-        <label>Start<input type="time" name="start" value={start} onChange={e => setStart(e.target.value)} /></label>
-        <label>End<input type="time" name="end" value={end} disabled={endOfDay} onChange={e => setEnd(e.target.value)} /></label>
+        <label>Current time<input type="time" value={now} onChange={e => setNow(e.target.value)} /></label>
+        <label>Start<input type="time" value={start} onChange={e => setStart(e.target.value)} /></label>
+        <label>End<input type="time" value={end} disabled={endOfDay} onChange={e => setEnd(e.target.value)} /></label>
         <label className="inline"><input type="checkbox" checked={endOfDay} onChange={e => setEndOfDay(e.target.checked)} /> Ends at 24:00</label>
       </div>
       <button type="submit">Check availability</button></form>
